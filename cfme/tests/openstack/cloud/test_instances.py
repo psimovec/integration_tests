@@ -11,6 +11,7 @@ from cfme.cloud.provider.openstack import OpenStackProvider
 from cfme.exceptions import ItemNotFound
 from cfme.utils.appliance.implementations.ui import navigate_to
 from cfme.utils.appliance.implementations.ui import navigator
+from cfme.utils.blockers import BZ
 from cfme.utils.generators import random_vm_name
 from cfme.utils.log import logger
 from cfme.utils.version import current_version
@@ -326,6 +327,7 @@ def test_instance_operating_system_linux(new_instance):
     assert os == prov_data_os, f'OS type mismatch: expected {prov_data_os} and got {os}'
 
 
+@pytest.mark.meta(blockers=[BZ(1684939)])
 @pytest.mark.regression
 def test_instance_attach_volume(volume, new_instance, appliance):
     """
